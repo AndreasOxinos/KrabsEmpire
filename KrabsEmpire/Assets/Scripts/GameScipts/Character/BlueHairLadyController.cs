@@ -6,15 +6,19 @@ public class BlueHairLadyController : MonoBehaviour
     private string AxisX = "Horizontal";
     private string AxisY = "Vertical";
     private Animator anim;
-    public int Speed = 5;
+	BlueLadyStats stats;
+
 
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
-    }
+		stats = gameObject.GetComponent<BlueLadyStats>();
+	}
     
     void Update()
     {
+
+
         anim.SetFloat("SpeedX", Input.GetAxis(AxisX));
         anim.SetFloat("SpeedY", Input.GetAxis(AxisY));
 
@@ -37,7 +41,7 @@ public class BlueHairLadyController : MonoBehaviour
                 anim.SetFloat("Direction", 3);
             }
             
-            transform.position += transform.right * Input.GetAxis(AxisX) * Speed * Time.deltaTime;
+            transform.position += transform.right * Input.GetAxis(AxisX) * stats.GetSpeed() * Time.deltaTime;
         }
     }
 
@@ -54,7 +58,7 @@ public class BlueHairLadyController : MonoBehaviour
                 anim.SetFloat("Direction", 1);
             }
             
-            transform.position += transform.up * Input.GetAxis(AxisY) * Speed * Time.deltaTime;
+            transform.position += transform.up * Input.GetAxis(AxisY) * stats.GetSpeed() * Time.deltaTime;
         }
     }
 }
